@@ -1,0 +1,111 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36" version="28.0.7">
+  <diagram name="Page-1" id="A86xoDGpQ9GVKcogdH0Q">
+    <mxGraphModel dx="2422" dy="834" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="F1C1PlPRFv7Oc3bITPRV-3" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="F1C1PlPRFv7Oc3bITPRV-1" target="F1C1PlPRFv7Oc3bITPRV-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="F1C1PlPRFv7Oc3bITPRV-1" value="General Flow Chart for Circut-Tree" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="340" y="190" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="F1C1PlPRFv7Oc3bITPRV-5" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="F1C1PlPRFv7Oc3bITPRV-2" target="F1C1PlPRFv7Oc3bITPRV-4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="F1C1PlPRFv7Oc3bITPRV-13" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="F1C1PlPRFv7Oc3bITPRV-2" target="F1C1PlPRFv7Oc3bITPRV-12">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="F1C1PlPRFv7Oc3bITPRV-2" value="Gather Solar Energy from Sun&amp;nbsp;" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="340" y="320" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="F1C1PlPRFv7Oc3bITPRV-7" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="F1C1PlPRFv7Oc3bITPRV-4" target="F1C1PlPRFv7Oc3bITPRV-6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="F1C1PlPRFv7Oc3bITPRV-4" value="Energy Pass Through Charge Controller&amp;nbsp;" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="340" y="460" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="F1C1PlPRFv7Oc3bITPRV-9" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="F1C1PlPRFv7Oc3bITPRV-6" target="F1C1PlPRFv7Oc3bITPRV-8">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="F1C1PlPRFv7Oc3bITPRV-21" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="F1C1PlPRFv7Oc3bITPRV-6" target="F1C1PlPRFv7Oc3bITPRV-20">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="F1C1PlPRFv7Oc3bITPRV-6" value="Pass though Fuel Gage Monitor&amp;nbsp;" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="340" y="600" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="F1C1PlPRFv7Oc3bITPRV-11" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="F1C1PlPRFv7Oc3bITPRV-8" target="F1C1PlPRFv7Oc3bITPRV-10">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="F1C1PlPRFv7Oc3bITPRV-8" value="Charge Battery&amp;nbsp;" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="340" y="740" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="F1C1PlPRFv7Oc3bITPRV-19" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="F1C1PlPRFv7Oc3bITPRV-10" target="F1C1PlPRFv7Oc3bITPRV-18">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="F1C1PlPRFv7Oc3bITPRV-25" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="F1C1PlPRFv7Oc3bITPRV-10" target="F1C1PlPRFv7Oc3bITPRV-24">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="F1C1PlPRFv7Oc3bITPRV-10" value="Pass through Fuel Gage Monitor&amp;nbsp;" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="340" y="880" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="F1C1PlPRFv7Oc3bITPRV-15" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="F1C1PlPRFv7Oc3bITPRV-12" target="F1C1PlPRFv7Oc3bITPRV-14">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="F1C1PlPRFv7Oc3bITPRV-12" value="Gather Solar values from AS7341" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="540" y="320" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="F1C1PlPRFv7Oc3bITPRV-17" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="F1C1PlPRFv7Oc3bITPRV-14" target="F1C1PlPRFv7Oc3bITPRV-16">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="F1C1PlPRFv7Oc3bITPRV-14" value="Publish Data to Dashboard&amp;nbsp;" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="740" y="320" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="F1C1PlPRFv7Oc3bITPRV-16" value="Solar Charge rate&amp;nbsp;&lt;div&gt;Solar energy values&amp;nbsp;&lt;/div&gt;" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="920" y="320" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="F1C1PlPRFv7Oc3bITPRV-18" value="Power external devices&amp;nbsp;" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="340" y="1020" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="F1C1PlPRFv7Oc3bITPRV-23" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="F1C1PlPRFv7Oc3bITPRV-20" target="F1C1PlPRFv7Oc3bITPRV-22">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="F1C1PlPRFv7Oc3bITPRV-20" value="Collect charge values" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="540" y="600" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="F1C1PlPRFv7Oc3bITPRV-22" value="Publish Charge rate&lt;div&gt;and Charge percentage&amp;nbsp; to dashboard&amp;nbsp;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;/div&gt;" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="740" y="600" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="F1C1PlPRFv7Oc3bITPRV-27" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="F1C1PlPRFv7Oc3bITPRV-24" target="F1C1PlPRFv7Oc3bITPRV-26">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="F1C1PlPRFv7Oc3bITPRV-24" value="Collect Usage Value" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="540" y="880" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="F1C1PlPRFv7Oc3bITPRV-26" value="Publish usage vales to dashboard&amp;nbsp;" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="740" y="880" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="F1C1PlPRFv7Oc3bITPRV-30" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="F1C1PlPRFv7Oc3bITPRV-28" target="F1C1PlPRFv7Oc3bITPRV-29">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="F1C1PlPRFv7Oc3bITPRV-28" value="Gather GPS location" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-430" y="300" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="F1C1PlPRFv7Oc3bITPRV-32" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="F1C1PlPRFv7Oc3bITPRV-29" target="F1C1PlPRFv7Oc3bITPRV-31">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="F1C1PlPRFv7Oc3bITPRV-29" value="Use GPS and openweather API to gather weather report" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="-430" y="440" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="F1C1PlPRFv7Oc3bITPRV-33" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.25;entryDx=0;entryDy=0;" edge="1" parent="1" source="F1C1PlPRFv7Oc3bITPRV-31" target="F1C1PlPRFv7Oc3bITPRV-2">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="-30" y="460" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="F1C1PlPRFv7Oc3bITPRV-31" value="compare weather values and publish to dashboard&amp;nbsp;" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="-230" y="440" width="120" height="60" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
