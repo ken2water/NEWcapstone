@@ -16,6 +16,7 @@
 #include <Credentials.h>
 #include "Adafruit_GPS.h"
 #include "JsonParserGeneratorRK.h"
+#include "Adafruit_BusIO_Register.h"
 
 
 // Let Device OS manage the connection to the Particle Cloud
@@ -34,12 +35,11 @@ Adafruit_MQTT_Publish circutLocation = Adafruit_MQTT_Publish(&mqtt, AIO_USERNAME
 //delcare sensors 
 Adafruit_AS7341 LightSensor;
 Adafruit_LC709203F BatteryMonitor; 
-Adafruit_LC709203F BattMon;
 Adafruit_GPS GPS(&Wire);
 
 //GPS confiugre 
 const int TIMEZONE = -6;
-const unsigned int UPDATE = 30000;
+const unsigned int UPDATE = 3000;
 float lat, lon, alt, location;
 
 int sat;
@@ -63,18 +63,18 @@ bool MQTT_ping();
 void getGPS(float *latitude, float *longitude, float *altitude, int *satellites);
 void subscriptionHandler(const char *event,const char *data);
 void currentLocation(float lat, float lon);
-
+void lightSensorRead();
 
 void setup() {
   //start sensors 
   Serial.begin(9600);
 
-
   //webhook
+  {
   String subscriptionName = String::format("%s/%s/", System.deviceID().c_str(), EVENT_Name);
   Particle.subscribe(subscriptionName, subscriptionHandler, MY_DEVICES);
   Serial.printf("subscribing to %s\n", subscriptionName.c_str());
-
+  }
   //GPS startup
   {
   GPS.begin(0x10);
@@ -91,8 +91,15 @@ void setup() {
   GPS.println(PMTK_Q_RELEASE);
   }
 
-
-
+  //Start LightSensor 
+    if (!LightSensor.begin()){
+    Serial.println("Could not find AS7341");
+  }
+  else
+  Serial.printf("Light Sensor has checked in\n");
+  LightSensor.setATIME(30);
+  LightSensor.setASTEP(999);
+  LightSensor.setGain(AS7341_GAIN_1X);
 }
   
 void loop() {
@@ -118,10 +125,11 @@ void loop() {
     Serial.printf("Lat: %0.6f, Lon: %0.6f, Alt: %0.6f, Satellites: %i\n",lat, lon, alt, sat);
     Serial.printf("=================================================================\n");
     Serial.printf("publishing data...\n");
+    currentLocation(lat,lon);
   circutTemp.publish(tempF);
   circutWind.publish(windSpeed);
   circutCond.publish(condition);
-  currentLocation(lat,lon);
+  lightSensorRead();
 
   }
 }
@@ -232,6 +240,31 @@ void currentLocation(float lat, float lon){
     jw.insertKeyValue("lon", lon);
   }
   circutLocation.publish(jw.getBuffer());
+}
 
+void lightSensorRead(){
+  uint16_t readings[12];
+  float counts[12];
+  if (!LightSensor.readAllChannels(readings)){
+    Serial.println("Error reading all channels!");
+    return;
+  }
+
+for(uint8_t i = 0; i < 12; i++) {
+    if(i == 4 || i == 5) continue;
+    // we skip the first set of duplicate clear/NIR readings
+    // (indices 4 and 5)
+    counts[i] = LightSensor.toBasicCounts(readings[i]);
+  }
+  //wave lengths choosen for optimum plant growth Photovoltaics use all visible spectrum 
+  Serial.printf("Measure of intensity\n");
+  Serial.printf("Clear (All)  :%f\n",counts[10]);
+  Serial.printf("Blue  (445nm):%f\n",counts[1]);
+  Serial.printf("Cyan  (480nm):%f\n",counts[2]);
+  Serial.printf("Orange(590nm):%f\n",counts[7]);
+  Serial.printf("Red   (630nm):%f\n",counts[8]);
+  Serial.printf("FarRed(680nm):%f\n",counts[9]);
+  Serial.printf("NIR   (910nm):%f\n",counts[11]);
+  
 
 }
