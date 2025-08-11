@@ -31,7 +31,15 @@ Adafruit_MQTT_Publish circutTemp = Adafruit_MQTT_Publish(&mqtt, AIO_USERNAME "/f
 Adafruit_MQTT_Publish circutWind = Adafruit_MQTT_Publish(&mqtt, AIO_USERNAME "/feeds/circutree.windspeed");
 Adafruit_MQTT_Publish circutCond = Adafruit_MQTT_Publish(&mqtt, AIO_USERNAME "/feeds/circutree.condition");
 Adafruit_MQTT_Publish circutLocation = Adafruit_MQTT_Publish(&mqtt, AIO_USERNAME "/feeds/circutree.location");
+Adafruit_MQTT_Publish circutClear = Adafruit_MQTT_Publish(&mqtt, AIO_USERNAME "/feeds/circutree.clear");
+Adafruit_MQTT_Publish circutBlue = Adafruit_MQTT_Publish(&mqtt, AIO_USERNAME "/feeds/circutree.blue");
+Adafruit_MQTT_Publish circutCyan = Adafruit_MQTT_Publish(&mqtt, AIO_USERNAME "/feeds/circutree.cyan");
+Adafruit_MQTT_Publish circutOrange = Adafruit_MQTT_Publish(&mqtt, AIO_USERNAME "/feeds/circutree.orange");
+Adafruit_MQTT_Publish circutRed = Adafruit_MQTT_Publish(&mqtt, AIO_USERNAME "/feeds/circutree.red");
+Adafruit_MQTT_Publish circutBattPercent = Adafruit_MQTT_Publish(&mqtt, AIO_USERNAME "/feeds/circutree.battery-percentage");
 
+
+Adafruit_MQTT_Publish circutNIR = Adafruit_MQTT_Publish(&mqtt, AIO_USERNAME "/feeds/circutree.location");
 //delcare sensors 
 Adafruit_AS7341 LightSensor;
 Adafruit_LC709203F BatteryMonitor; 
@@ -39,9 +47,8 @@ Adafruit_GPS GPS(&Wire);
 
 //GPS confiugre 
 const int TIMEZONE = -6;
-const unsigned int UPDATE = 3000;
+const unsigned int UPDATE = 30000;
 float lat, lon, alt, location;
-
 int sat;
 unsigned int lastGPS;
 
@@ -56,6 +63,9 @@ bool getNewWeather;
 //Time Variables
 int hours, minutes, lasthour, lastminute;
 
+//Battery Monitor Variables 
+float battPercent;
+float battvolt;
 
 //Declare Functions 
 void MQTT_connect();
@@ -64,6 +74,7 @@ void getGPS(float *latitude, float *longitude, float *altitude, int *satellites)
 void subscriptionHandler(const char *event,const char *data);
 void currentLocation(float lat, float lon);
 void lightSensorRead();
+void batteryGageRead();
 
 void setup() {
   //start sensors 
@@ -73,16 +84,16 @@ void setup() {
   {
   String subscriptionName = String::format("%s/%s/", System.deviceID().c_str(), EVENT_Name);
   Particle.subscribe(subscriptionName, subscriptionHandler, MY_DEVICES);
-  Serial.printf("subscribing to %s\n", subscriptionName.c_str());
+  Serial.printf(" %s has checked in.\n", subscriptionName.c_str());
   }
   //GPS startup
   {
   GPS.begin(0x10);
   if (!GPS.begin(0x10)){
-    Serial.printf("GPS Failed to check in\n");
+    Serial.printf("GPS has NOT in.\n");
     }
   else{
-    Serial.printf("GPS has checked in\n");
+    Serial.printf("GPS has checked in.\n");
     }
   GPS.sendCommand(PMTK_SET_NMEA_OUTPUT_RMCGGA);
   GPS.sendCommand(PMTK_SET_NMEA_UPDATE_1HZ); 
@@ -92,14 +103,26 @@ void setup() {
   }
 
   //Start LightSensor 
+  {
     if (!LightSensor.begin()){
-    Serial.println("Could not find AS7341");
+    Serial.println("Light Sensor has NOT check in.\n");
   }
   else
-  Serial.printf("Light Sensor has checked in\n");
+  Serial.printf("Light Sensor has checked in.\n");
   LightSensor.setATIME(30);
   LightSensor.setASTEP(999);
   LightSensor.setGain(AS7341_GAIN_1X);
+  }
+
+  //Start Battery Monitor
+//   {
+//     if (!BatteryMonitor.begin()) {
+//     Serial.printf("Battery Monitor has NOT checked in.  Double check that the battery is plugged in!\n");
+//     while (1) delay(10);
+//   }
+//   Serial.printf("Battery Monitor has checked in.\n");
+//   BatteryMonitor.setPackSize(LC709203F_APA_3000MAH);// chose 3000mAh cloest to battery at 5000mAh
+// }
 }
   
 void loop() {
@@ -107,7 +130,7 @@ void loop() {
   MQTT_connect();
   MQTT_ping();
   Time.zone(TIMEZONE);//setting time zone
-{
+
   //GPS read 
   GPS.read();
   if (GPS.newNMEAreceived()) {
@@ -126,13 +149,20 @@ void loop() {
     Serial.printf("=================================================================\n");
     Serial.printf("publishing data...\n");
     currentLocation(lat,lon);
-  circutTemp.publish(tempF);
-  circutWind.publish(windSpeed);
-  circutCond.publish(condition);
-  lightSensorRead();
+    circutTemp.publish(tempF);
+    circutWind.publish(windSpeed);
+    circutCond.publish(condition);
+    lightSensorRead();
+    // batteryGageRead();
 
-  }
+    // if (BatteryMonitor.cellPercent()<=15) {
+    // Serial.printf("Battery Low\n");
+  //   // circutBattPercent.publish(battPercent);
+  // }
+
 }
+}
+
 
 //calling webhook ADD TIME INTERVAL 
 // Lat42 = lat;
@@ -149,7 +179,7 @@ void loop() {
 
 
 
-}
+
 
 
 void getGPS(float *latitude, float *longitude, float *altitude, int *satellites){
@@ -265,6 +295,13 @@ for(uint8_t i = 0; i < 12; i++) {
   Serial.printf("Red   (630nm):%f\n",counts[8]);
   Serial.printf("FarRed(680nm):%f\n",counts[9]);
   Serial.printf("NIR   (910nm):%f\n",counts[11]);
-  
+  }
 
-}
+  void batteryGageRead(){
+  battvolt  = BatteryMonitor.cellVoltage();
+  battPercent = BatteryMonitor.cellPercent();
+  Serial.printf("Battery Voltage %f\n Battery Percentage %f\n",battvolt,battPercent);
+  circutBattPercent.publish(battPercent);
+
+
+  }
