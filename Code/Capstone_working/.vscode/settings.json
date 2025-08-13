@@ -3,5 +3,7 @@
     "C_Cpp.default.configurationProvider": "particle.particle-vscode-core",
     "files.associations": {
         "*.ino": "cpp"
-    }
+    },
+    "particle.targetDevice": "0a10aced202194944a056160",
+    "C_Cpp.errorSquiggles": "enabled"
 }

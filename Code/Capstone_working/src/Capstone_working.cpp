@@ -17,6 +17,12 @@
 #include "Adafruit_GPS.h"
 #include "JsonParserGeneratorRK.h"
 #include "Adafruit_BusIO_Register.h"
+#include "../lib/Adafruit_MQTT/src/Adafruit_MQTT.h"
+#include "../lib/Adafruit_MQTT/src/Adafruit_MQTT_SPARK.h"
+#include "../lib/Adafruit_AS7341/src/Adafruit_AS7341.h"
+#include "../lib/Adafruit_LC709203F/src/Adafruit_LC709203F.h"
+#include "../lib/GPS_CNM/src/Adafruit_GPS.h"
+#include "../lib/GPS_CNM/src/Adafruit_PMTK.h"
 
 
 // Let Device OS manage the connection to the Particle Cloud
@@ -33,13 +39,13 @@ Adafruit_MQTT_Publish circutCond = Adafruit_MQTT_Publish(&mqtt, AIO_USERNAME "/f
 Adafruit_MQTT_Publish circutLocation = Adafruit_MQTT_Publish(&mqtt, AIO_USERNAME "/feeds/circutree.location");
 Adafruit_MQTT_Publish circutClear = Adafruit_MQTT_Publish(&mqtt, AIO_USERNAME "/feeds/circutree.clear");
 Adafruit_MQTT_Publish circutBlue = Adafruit_MQTT_Publish(&mqtt, AIO_USERNAME "/feeds/circutree.blue");
-Adafruit_MQTT_Publish circutCyan = Adafruit_MQTT_Publish(&mqtt, AIO_USERNAME "/feeds/circutree.cyan");
-Adafruit_MQTT_Publish circutOrange = Adafruit_MQTT_Publish(&mqtt, AIO_USERNAME "/feeds/circutree.orange");
+// Adafruit_MQTT_Publish circutCyan = Adafruit_MQTT_Publish(&mqtt, AIO_USERNAME "/feeds/circutree.cyan");
+// Adafruit_MQTT_Publish circutOrange = Adafruit_MQTT_Publish(&mqtt, AIO_USERNAME "/feeds/circutree.orange");
 Adafruit_MQTT_Publish circutRed = Adafruit_MQTT_Publish(&mqtt, AIO_USERNAME "/feeds/circutree.red");
 Adafruit_MQTT_Publish circutBattPercent = Adafruit_MQTT_Publish(&mqtt, AIO_USERNAME "/feeds/circutree.battery-percentage");
-
-
 Adafruit_MQTT_Publish circutNIR = Adafruit_MQTT_Publish(&mqtt, AIO_USERNAME "/feeds/circutree.location");
+
+
 //delcare sensors 
 Adafruit_AS7341 LightSensor;
 Adafruit_LC709203F BatteryMonitor; 
@@ -115,14 +121,14 @@ void setup() {
   }
 
   //Start Battery Monitor
-//   {
-//     if (!BatteryMonitor.begin()) {
-//     Serial.printf("Battery Monitor has NOT checked in.  Double check that the battery is plugged in!\n");
-//     while (1) delay(10);
-//   }
-//   Serial.printf("Battery Monitor has checked in.\n");
-//   BatteryMonitor.setPackSize(LC709203F_APA_3000MAH);// chose 3000mAh cloest to battery at 5000mAh
-// }
+  {
+    if (!BatteryMonitor.begin()) {
+    Serial.printf("Battery Monitor has NOT checked in.  Double check that the battery is plugged in!\n");
+    while (1) delay(10);
+  }
+  Serial.printf("Battery Monitor has checked in.\n");
+  BatteryMonitor.setPackSize(LC709203F_APA_3000MAH);// chose 3000mAh cloest to battery at 5000mAh
+}
 }
   
 void loop() {
@@ -153,7 +159,7 @@ void loop() {
     circutWind.publish(windSpeed);
     circutCond.publish(condition);
     lightSensorRead();
-    // batteryGageRead();
+    batteryGageRead();
 
     // if (BatteryMonitor.cellPercent()<=15) {
     // Serial.printf("Battery Low\n");
@@ -295,6 +301,10 @@ for(uint8_t i = 0; i < 12; i++) {
   Serial.printf("Red   (630nm):%f\n",counts[8]);
   Serial.printf("FarRed(680nm):%f\n",counts[9]);
   Serial.printf("NIR   (910nm):%f\n",counts[11]);
+  circutClear.publish(counts[10]);
+  circutBlue.publish(counts[1]);
+  circutRed.publish(counts[8]);
+
   }
 
   void batteryGageRead(){

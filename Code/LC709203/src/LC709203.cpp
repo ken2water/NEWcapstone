@@ -37,6 +37,7 @@ void setup() {
 
 // loop() runs over and over again, as quickly as it can execute.
 void loop() { 
+  delay(100000);
   battvolt = voltGage.cellVoltage();
   battPercent = voltGage.cellPercent();
   Serial.printf("Battery Voltage %f\n Battery Percentage %f\n",battvolt,battPercent);
